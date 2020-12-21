@@ -11,12 +11,12 @@ export const prepareData = (filterParams) => {
           item["launch_year"] === `${filterParams["year"]}`
         );
       })
-      .map((each) => ({
-        flight_number: each["flight_number"],
-        mission_name: each["mission_name"],
-        payloads_count: each.rocket.second_stage.payloads.length,
+      .map((flight) => ({
+        flight_number: flight["flight_number"],
+        mission_name: flight["mission_name"],
+        payloads_count: flight.rocket.second_stage.payloads.length,
       }))
-      
+
     return sortByFlightNumberAndPayLoadCount(records);
 
   };
