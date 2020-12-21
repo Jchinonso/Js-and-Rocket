@@ -1,9 +1,13 @@
-export const filteredByCustomerName = (arr, filterParams) => {
-  for (const item of arr) {
+export const filteredByCustomerNameAndYear = (record, filterParams) => {
+  const { payloads } = record.rocket.second_stage;
+  for (const item of payloads) {
     const filteredCustomers = item.customers.filter((customer) =>
       customer.includes(filterParams.customerName)
     );
-    if (filteredCustomers.length > 0) {
+    if (
+      filteredCustomers.length > 0 &&
+      record["launch_year"] === `${filterParams["year"]}`
+    ) {
       return true;
     }
   }

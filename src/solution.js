@@ -1,15 +1,11 @@
 // Please implement your solution in this file
-import {filteredByCustomerName, sortByFlightNumberAndPayLoadCount} from './utils'
+import {filteredByCustomerNameAndYear, sortByFlightNumberAndPayLoadCount} from './utils'
 
 export const prepareData = (filterParams) => {
   return (data) => {
     const records = data
       .filter((item) => {
-        const { payloads } = item.rocket.second_stage;
-        return (
-          filteredByCustomerName(payloads, filterParams) &&
-          item["launch_year"] === `${filterParams["year"]}`
-        );
+        return filteredByCustomerNameAndYear(item, filterParams);
       })
       .map((flight) => ({
         flight_number: flight["flight_number"],
