@@ -17,7 +17,7 @@ export const prepareData = (filterParams) => {
         payloads_count: flight.rocket.second_stage.payloads.length,
       }))
 
-    return sortByFlightNumberAndPayLoadCount(records);
+    return sortByFlightNumberAndPayLoadCount([...records]);
 
   };
 };
